@@ -1,4 +1,5 @@
 let grillGeneratorButton = document.getElementById("grillGenerator");
+let min = 1;
 
 grillGeneratorButton.addEventListener("click", function () {
     let difficultyOption = document.getElementById("difficulty").value;
@@ -18,10 +19,16 @@ grillGeneratorButton.addEventListener("click", function () {
     }
 
     grillCreator(grillItemsNumber, difficultyOption);
+
+    let bombContainer = bombCreator(grillItemsNumber);
+    bubbleSort(bombContainer);
+    console.table(bombContainer);
 });
 
 
-
+function randomNumber(max ,min){
+    return Math.floor((Math.random() * max) + min);
+}
 
 function grillCreator(grillItemsNumber, difficultyOption) {
     for (let index = 0; index < grillItemsNumber; index++) {
@@ -41,5 +48,38 @@ function grillCreator(grillItemsNumber, difficultyOption) {
             grillItem.classList.add("bg-info");
         });
         grillContainer.append(grillItem);
+    }
+}
+
+
+function bombCreator(grillItemsNumber) {
+    let bombContainer = [];
+    let condition = true;
+    for (let index = 0; index < 16; index++) {
+        condition = true;
+        while (condition) {
+            bombItem = randomNumber(grillItemsNumber, min);
+            console.log(bombItem);
+            if (bombContainer.indexOf(bombItem) === -1) {
+                bombContainer[index] = bombItem;
+                console.log(bombContainer[index]);
+                condition = false;
+            }
+        }
+    }
+    return bombContainer;
+}
+
+
+function bubbleSort(array) {
+    let i;
+    for (let index = 0; index < array.length; index++) {
+        for (let j = 0; j < array.length; j++) {
+            if (array[j] > array[j + 1]) {
+                i = array[j + 1];
+                array[j + 1] = array[j];
+                array[j] = i;
+            }
+        }
     }
 }
