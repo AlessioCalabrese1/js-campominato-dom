@@ -22,12 +22,12 @@ grillGeneratorButton.addEventListener("click", function () {
     let bombContainer = bombCreator(grillItemsNumber);
     bubbleSort(bombContainer);
     console.table(bombContainer);
-    
+
     grillCreator(grillItemsNumber, difficultyOption, bombContainer);
 });
 
 
-function randomNumber(max ,min){
+function randomNumber(max, min) {
     return Math.floor((Math.random() * max) + min);
 }
 
@@ -43,26 +43,28 @@ function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
         }
 
         grillItem.innerHTML = index + 1;
-        grillItem.addEventListener("click", function () {
-            console.log(grillItem.innerHTML);
-            grillItem.classList.remove("bg-success");
-
-            if(bombContainer.indexOf(parseInt(grillItem.innerHTML)) != -1){
-                grillItem.classList.add("bg-danger");
-                console.warn("Hai perso");
-            }else{
-                grillItem.classList.add("bg-info");
-                winCounter++;
-                console.log("Io sono wincounter: " + winCounter);
-                if (winCounter === (grillItemsNumber - 16)){
-                    console.warn("Hai vinto! Il tuo punteggio è " + winCounter);
-                    winCounter = 0;
-                }
-            }
-        });
+        grillItem.addEventListener("click", clickGrillItem(grillItem, bombContainer, grillItemsNumber));
         grillContainer.append(grillItem);
     }
 }
+
+function clickGrillItem(grillItem, bombContainer, grillItemsNumber) {
+    console.log(grillItem.innerHTML);
+    grillItem.classList.remove("bg-success");
+
+    if (bombContainer.indexOf(parseInt(grillItem.innerHTML)) != -1) {
+        grillItem.classList.add("bg-danger");
+        console.warn("Hai perso");
+    } else {
+        grillItem.classList.add("bg-info");
+        winCounter++;
+        console.log("Io sono wincounter: " + winCounter);
+        if (winCounter === (grillItemsNumber - 16)) {
+            console.warn("Hai vinto! Il tuo punteggio è " + winCounter);
+            winCounter = 0;
+        }
+    }
+} 
 
 
 function bombCreator(grillItemsNumber) {
