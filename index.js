@@ -43,12 +43,28 @@ function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
         }
 
         grillItem.innerHTML = index + 1;
-        grillItem.addEventListener("click", clickGrillItem(grillItem, bombContainer, grillItemsNumber));
+        grillItem.addEventListener("click", function () {
+            console.log(grillItem.innerHTML);
+            grillItem.classList.remove("bg-success");
+
+            if (bombContainer.indexOf(parseInt(grillItem.innerHTML)) != -1) {
+                grillItem.classList.add("bg-danger");
+                console.warn("Hai perso");
+            } else {
+                grillItem.classList.add("bg-info");
+                winCounter++;
+                console.log("Io sono wincounter: " + winCounter);
+                if (winCounter === (grillItemsNumber - 16)) {
+                    console.warn("Hai vinto! Il tuo punteggio è " + winCounter);
+                    winCounter = 0;
+                }
+            }
+        }, {once : true});
         grillContainer.append(grillItem);
     }
 }
 
-function clickGrillItem(grillItem, bombContainer, grillItemsNumber) {
+/* function clickGrillItem(grillItem, bombContainer, grillItemsNumber) {
     console.log(grillItem.innerHTML);
     grillItem.classList.remove("bg-success");
 
@@ -64,7 +80,7 @@ function clickGrillItem(grillItem, bombContainer, grillItemsNumber) {
             winCounter = 0;
         }
     }
-} 
+} */
 
 
 function bombCreator(grillItemsNumber) {
