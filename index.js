@@ -18,11 +18,11 @@ grillGeneratorButton.addEventListener("click", function () {
         grillContainer.innerHTML = "";
     }
 
-    grillCreator(grillItemsNumber, difficultyOption);
-
     let bombContainer = bombCreator(grillItemsNumber);
     bubbleSort(bombContainer);
     console.table(bombContainer);
+    
+    grillCreator(grillItemsNumber, difficultyOption, bombContainer);
 });
 
 
@@ -30,7 +30,7 @@ function randomNumber(max ,min){
     return Math.floor((Math.random() * max) + min);
 }
 
-function grillCreator(grillItemsNumber, difficultyOption) {
+function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
     for (let index = 0; index < grillItemsNumber; index++) {
         let grillItem = document.createElement("div");
         if (difficultyOption === "Difficulty 1") {
@@ -45,7 +45,13 @@ function grillCreator(grillItemsNumber, difficultyOption) {
         grillItem.addEventListener("click", function () {
             console.log(grillItem.innerHTML);
             grillItem.classList.remove("bg-success");
-            grillItem.classList.add("bg-info");
+
+            if(bombContainer.indexOf(parseInt(grillItem.innerHTML)) != -1){
+                grillItem.classList.add("bg-danger");
+                console.warn("Hai perso");
+            }else{
+                grillItem.classList.add("bg-info");
+            }
         });
         grillContainer.append(grillItem);
     }
