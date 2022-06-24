@@ -1,5 +1,6 @@
 let grillGeneratorButton = document.getElementById("grillGenerator");
 let min = 1;
+let winCounter = 0;
 
 grillGeneratorButton.addEventListener("click", function () {
     let difficultyOption = document.getElementById("difficulty").value;
@@ -51,6 +52,12 @@ function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
                 console.warn("Hai perso");
             }else{
                 grillItem.classList.add("bg-info");
+                winCounter++;
+                console.log("Io sono wincounter: " + winCounter);
+                if (winCounter === (grillItemsNumber - 16)){
+                    console.warn("Hai vinto! Il tuo punteggio è " + winCounter);
+                    winCounter = 0;
+                }
             }
         });
         grillContainer.append(grillItem);
