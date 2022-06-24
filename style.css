@@ -1,0 +1,29 @@
+.w_1000px{
+    width: 800px;
+    margin: 30px auto;
+}
+
+.grill-items-10{
+    width: calc(100% / 10);
+    height: 80px;
+    border: 2px solid black;
+}
+
+.grill-items-9{
+    width: calc(100% / 9);
+    height: 80px;
+    border: 2px solid black;
+}
+
+.grill-items-7{
+    width: calc(100% / 7);
+    height: 80px;
+    border: 2px solid black;
+}
+
+.gi-text{
+    text-align: center;
+    font-weight: bold;
+    font-size: 25px;
+    line-height: 75px;
+}
