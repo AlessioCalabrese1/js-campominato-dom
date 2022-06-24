@@ -32,14 +32,27 @@ function randomNumber(max, min) {
 }
 
 function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
+    let winScreen = document.createElement("div");
+    winScreen.id = "winScreen";
+    winScreen.classList.add("d-none");
+    winScreen.append("Hai vinto!");
+
+    let loseScreen = document.createElement("div");
+    loseScreen.id = "loseScreen";
+    loseScreen.classList.add("d-none");
+    loseScreen.append("Hai perso!");
+    
     for (let index = 0; index < grillItemsNumber; index++) {
         let grillItem = document.createElement("div");
         if (difficultyOption === "Difficulty 1") {
             grillItem.classList.add("grill-items-10", "d-inline-block", "bg-success", "gi-text");
+            grillContainer.classList = "w_800px"
         } else if (difficultyOption === "Difficulty 2") {
             grillItem.classList.add("grill-items-9", "d-inline-block", "bg-success", "gi-text");
+            grillContainer.classList = "w_720px"
         } else if (difficultyOption === "Difficulty 3") {
             grillItem.classList.add("grill-items-7", "d-inline-block", "bg-success", "gi-text");
+            grillContainer.classList = "w_560px"
         }
 
         grillItem.innerHTML = index + 1;
@@ -50,6 +63,7 @@ function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
             if (bombContainer.indexOf(parseInt(grillItem.innerHTML)) != -1) {
                 grillItem.classList.add("bg-danger");
                 console.warn("Hai perso");
+                loseScreen.classList.remove("d-none");
             } else {
                 grillItem.classList.add("bg-info");
                 winCounter++;
@@ -57,11 +71,15 @@ function grillCreator(grillItemsNumber, difficultyOption, bombContainer) {
                 if (winCounter === (grillItemsNumber - 16)) {
                     console.warn("Hai vinto! Il tuo punteggio è " + winCounter);
                     winCounter = 0;
+                    winScreen.classList.remove("d-none");
                 }
             }
         }, {once : true});
         grillContainer.append(grillItem);
     }
+
+    grillContainer.append(winScreen);
+    grillContainer.append(loseScreen);
 }
 
 /* function clickGrillItem(grillItem, bombContainer, grillItemsNumber) {

@@ -1,5 +1,18 @@
-.w_1000px{
+.w_800px{
     width: 800px;
+    height: 800px;
+    margin: 30px auto;
+}
+
+.w_720px{
+    width: 800px;
+    height: 720px;
+    margin: 30px auto;
+}
+
+.w_560px{
+    width: 800px;
+    height: 560px;
     margin: 30px auto;
 }
 
@@ -26,4 +39,40 @@
     font-weight: bold;
     font-size: 25px;
     line-height: 75px;
+}
+
+#grillContainer{
+    position: relative;
+}
+
+#winScreen{
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    color: green;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+}
+
+#loseScreen{
+    font-size: 50px;
+    font-weight: bold;
+    width: 100%;
+    height: 100%;
+    color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
 }
